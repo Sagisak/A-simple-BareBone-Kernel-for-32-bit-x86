@@ -1,0 +1,47 @@
+# Ignore build directories
+build/
+out/
+
+# Ignore object files and binaries
+*.o
+*.ko
+*.so
+*.mod
+*.cmd
+*.mod.c
+*.dtb
+*.dtbo
+*.bin
+*.elf
+*.map
+
+# Ignore kernel configuration files
+.config
+.config.old
+
+# Ignore kernel release files
+Module.symvers
+Module.markers
+modules.builtin
+modules.order
+
+# Ignore temporary files and logs
+*.log
+*.tmp
+*.swp
+
+# Ignore cscope files
+cscope.*
+ncscope.*
+
+# Ignore tags and IDE specific files
+tags
+TAGS
+*.bak
+*.backup
+*.swp
+*.swo
+*.swn
+*.~*~
+.idea/
+.vscode/
