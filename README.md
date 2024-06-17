@@ -3,4 +3,5 @@ This is a respitory to make a simple kernel from the tutorial OS dev wiki. All o
 
 # GCC cross compiler needed
 For this project, GCC cross compiler needed to be created first before the project can be started. I have created a protable GCC cross compiler just for this particular problem and the link for that github and how to use it is below:
+
 https://github.com/Sagisak/GCC-Cross-Compiler-Creation
