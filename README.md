@@ -8,20 +8,20 @@ For this project, GCC cross compiler needed to be created first before the proje
 
 https://github.com/Sagisak/GCC-Cross-Compiler-Creation
 
-#making boot.o
+# making boot.o
 Head to boot folder and do this command:
 ```sh
 i686-elf-as boot.s -o boot.o
 ```
 
-#Making kernel.o
+# Making kernel.o
 
 Head to kernel folder and do this command:
 ```sh
 i686-elf-gcc -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 ```
 
-#  Linking the kernel.o with boot.o
+# Linking the kernel.o with boot.o
 To create the myos.bin you need to make link between boot.o and kernel.o. This is the code below:
 
 ```sh
