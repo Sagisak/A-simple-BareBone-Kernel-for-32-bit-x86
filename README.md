@@ -7,3 +7,27 @@ https://wiki.osdev.org/Bare_Bones
 For this project, GCC cross compiler needed to be created first before the project can be started. I have created a protable GCC cross compiler just for this particular problem and the link for that github and how to use it is below:
 
 https://github.com/Sagisak/GCC-Cross-Compiler-Creation
+
+#making boot.o
+Head to boot folder and do this command:
+```sh
+i686-elf-as boot.s -o boot.o
+```
+
+#Making kernel.o
+
+Head to kernel folder and do this command:
+```sh
+i686-elf-gcc -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+```
+
+#  Linking the kernel.o with boot.o
+To create the myos.bin you need to make link between boot.o and kernel.o. This is the code below:
+
+```sh
+i686-elf-gcc -T kernel/linker.ld -o myos.bin -ffreestanding -O2 -nostdlib boot/boot.o kernel/kernel.o -lgcc
+```
+
+
+
+
