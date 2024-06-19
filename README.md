@@ -38,7 +38,7 @@ source grub-file_checker
 ```
 
 # Booting the Kernel
-with the directory isodir already been made, with the child directory of boot and grub as the most inner child, use this command to make the myos.iso by the help of grub-mkreskue:
+with the directory isodir already been made, with the child directory of boot and grub as the most inner child, use this command to make the myos.iso by the help of grub-mkreskue (make sure that GRUB and xorriso is install first before you can do mkreskue):
 
 ```sh
 cp myos.bin isodir/boot/myos.bin
