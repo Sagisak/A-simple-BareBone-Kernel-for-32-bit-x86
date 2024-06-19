@@ -139,75 +139,62 @@ void terminal_writestring(const char* data)
     terminal_write(data, strlen(data));
 }
 
+void terminal_writecolor(const char* data, const uint8_t* colors, size_t size) 
+{
+    for (size_t i = 0; i < size; i++) {
+        terminal_color = colors[i];
+        terminal_putchar(data[i]);
+    }
+}
+
 void kernel_main(void) 
 {
-    /* Initialize terminal interface */
     terminal_initialize();
 
-    /* Example of scrolling output */
+    /* Demonstrate scrolling output */
+    for (int i = 0; i < 60; i++) {
+        terminal_writestring("This is line ");
+        char num[3];
+        num[0] = '0' + (i / 10);
+        num[1] = '0' + (i % 10);
+        num[2] = '\n';
+        terminal_writestring(num);
+    }
+    
+
+    /* Display all colors in a grid */
+    const char* color_grid = 
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n"
+        "ABCDEFGH\n";
+
+    size_t grid_size = strlen(color_grid);
+    uint8_t grid_colors[grid_size];
+
+    for (int bg = 0; bg < 8; bg++) {
+        for (int fg = 0; fg < 16; fg++) {
+            grid_colors[bg * 16 + fg] = vga_entry_color(fg, bg);
+        }
+    }
+
+    terminal_writecolor(color_grid, grid_colors, grid_size);
+
+    /* Display final messages */
+    terminal_setcolor(vga_entry_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK));
     terminal_writestring("Welcome to the Kernel!\n");
-    terminal_writestring("This is a demonstration of terminal scrolling in a VGA text mode.\n");
-    terminal_writestring("The screen will scroll automatically when it fills up.\n");
-    terminal_writestring("This is line 4.\n");
-    terminal_writestring("This is line 5.\n");
-    terminal_writestring("This is line 6.\n");
-    terminal_writestring("This is line 7.\n");
-    terminal_writestring("This is line 8.\n");
-    terminal_writestring("This is line 9.\n");
-    terminal_writestring("This is line 10.\n");
-    terminal_writestring("This is line 11.\n");
-    terminal_writestring("This is line 12.\n");
-    terminal_writestring("This is line 13.\n");
-    terminal_writestring("This is line 14.\n");
-    terminal_writestring("This is line 15.\n");
-    terminal_writestring("This is line 16.\n");
-    terminal_writestring("This is line 17.\n");
-    terminal_writestring("This is line 18.\n");
-    terminal_writestring("This is line 19.\n");
-    terminal_writestring("This is line 20.\n");
-    terminal_writestring("This is line 21.\n");
-    terminal_writestring("This is line 22.\n");
-    terminal_writestring("This is line 23.\n");
-    terminal_writestring("This is line 24.\n");
-    terminal_writestring("This is line 25.\n");
-    terminal_writestring("This is line 26.\n");
-    terminal_writestring("This is line 27.\n");
-    terminal_writestring("This is line 28.\n");
-    terminal_writestring("This is line 29.\n");
-    terminal_writestring("This is line 30.\n");
-    terminal_writestring("This is line 31.\n");
-    terminal_writestring("This is line 32.\n");
-    terminal_writestring("This is line 33.\n");
-    terminal_writestring("This is line 34.\n");
-    terminal_writestring("This is line 35.\n");
-    terminal_writestring("This is line 36.\n");
-    terminal_writestring("This is line 37.\n");
-    terminal_writestring("This is line 38.\n");
-    terminal_writestring("This is line 39.\n");
-    terminal_writestring("This is line 40.\n");
-    terminal_writestring("This is line 41.\n");
-    terminal_writestring("This is line 42.\n");
-    terminal_writestring("This is line 43.\n");
-    terminal_writestring("This is line 44.\n");
-    terminal_writestring("This is line 45.\n");
-    terminal_writestring("This is line 46.\n");
-    terminal_writestring("This is line 47.\n");
-    terminal_writestring("This is line 48.\n");
-    terminal_writestring("This is line 49.\n");
-    terminal_writestring("This is line 50.\n");
-    terminal_writestring("This is line 51.\n");
-    terminal_writestring("This is line 52.\n");
-    terminal_writestring("This is line 53.\n");
-    terminal_writestring("This is line 54.\n");
-    terminal_writestring("This is line 55.\n");
-    terminal_writestring("This is line 56.\n");
-    terminal_writestring("This is line 57.\n");
-    terminal_writestring("This is line 58.\n");
-    terminal_writestring("This is line 59.\n");
-    terminal_writestring("This is line 60.\n");
-    terminal_writestring("Welcome to the Kernel!\n");
-    terminal_writestring("This is a demonstration of terminal scrolling in a VGA text mode.\n");
-    terminal_writestring("The screen will scroll automatically when it fills up. That is why the line start at 42.\n");
-    terminal_writestring("You can check the kernel.c for further understanding.\n");
+    terminal_writestring("Hello, Kernel World!\n");
 }
 
